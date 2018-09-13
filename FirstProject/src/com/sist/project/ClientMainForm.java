@@ -1,6 +1,7 @@
 package com.sist.project;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -8,8 +9,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.UIManager;
 
 import com.sist.common.Function;
 
@@ -25,6 +29,13 @@ public class ClientMainForm extends JFrame implements ActionListener{
 		DetailForm df=new DetailForm();
 		Chat chat=new Chat();
 		
+		JScrollPane js;
+		JScrollPane js1;
+		JScrollPane js2;
+		JScrollPane js3;
+		JScrollPane js4;
+
+		
 		 // 네트워크(전화가 필요)
 	    Socket s;// 서버 연결
 	    BufferedReader in;// 서버에서 들어오는 결과값 받기
@@ -32,17 +43,90 @@ public class ClientMainForm extends JFrame implements ActionListener{
 		public ClientMainForm()  
 		{
 			setLayout(card);
-			add("SBF", sbf);
+			
+			sub.cb.addActionListener(new ActionListener() {
+			      
+				   @Override
+				   public void actionPerformed(ActionEvent e) {
+				      // TODO Auto-generated method stub
+				      JComboBox jcb=(JComboBox)e.getSource();
+				      int index=jcb.getSelectedIndex();
+				      if(index==0) {
+				         JOptionPane.showMessageDialog(null, "경고 메시지 내용", "경고 메시지 제목", JOptionPane.WARNING_MESSAGE);
+				      }
+				      
+				   }
+				});
+				   sub.cb2.addActionListener(new ActionListener() {
+				   
+				   @Override
+				   public void actionPerformed(ActionEvent e) {
+				      // TODO Auto-generated method stub
+				      JComboBox jcb=(JComboBox)e.getSource();
+				      int index=jcb.getSelectedIndex();
+				      if(index==0) {
+				         JOptionPane.showMessageDialog(null, "경고 메시지 내용", "경고 메시지 제목", JOptionPane.WARNING_MESSAGE);
+				      }
+				   }
+				});
+
+				   
+				   //===========================================================================================================
+				   js=new JScrollPane(sbf,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+				   
+				   sbf.setPreferredSize(new Dimension(1920,1080));
+				   js.setPreferredSize(new Dimension(1920,980));
+				   js.setBounds(10,15,730,650);
+				   
+				   js.setViewportView(sbf);
+				   //===========================================================================================================sbf전체 스크롤바
+				   //===========================================================================================================
+				    js1=new JScrollPane(mp,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+				   
+				   mp.setPreferredSize(new Dimension(1920,1080));
+				   js1.setPreferredSize(new Dimension(1920,980));
+				   js1.setBounds(10,15,730,650);
+				   
+				   js1.setViewportView(mp);
+				   //===========================================================================================================mp전체 스크롤바
+				   
+				   //===========================================================================================================
+				   js2=new JScrollPane(sub,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+				   
+				   sub.setPreferredSize(new Dimension(1920,1080));
+				   js2.setPreferredSize(new Dimension(1920,980));
+				   js2.setBounds(10,15,730,650);
+				   
+				   js2.setViewportView(sub);
+				   //============================================================================================================sub1전체 스크롤바
+				   //===========================================================================================================
+				   js3=new JScrollPane(sub2,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+				   
+				   sub2.setPreferredSize(new Dimension(1920,1080));
+				   js3.setPreferredSize(new Dimension(1920,980));
+				   js3.setBounds(10,15,730,650);
+				   
+				   js3.setViewportView(sub2);
+				   //===========================================================================================================sub2전체 스크롤바
+				 //===========================================================================================================
+				   js4=new JScrollPane(df,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+				   
+				   df.setPreferredSize(new Dimension(1920,1080));
+				   js4.setPreferredSize(new Dimension(1920,980));
+				   js4.setBounds(10,15,730,650);
+				   
+				   js4.setViewportView(df);
+				   //===========================================================================================================sub2전체 스크롤바
+				   
 			add("LOGIN", login);
+			add("SBF", js);
+			add("MP", js1);
+			add("SUB", js2);
+			add("SUB2", js3);
+			add("DF", js4);
 			add("CHAT",chat);
-			add("MP", mp);
 			
-			
-			add("SUB", sub);
-			
-			
-			add("SUB2",sub2);
-			add("DF", df); 
+			 
 			
 			
 			setSize(1920, 1080);
@@ -67,6 +151,12 @@ public class ClientMainForm extends JFrame implements ActionListener{
 		}
 		public static void main(String[] args) {
 			ClientMainForm cmf=new ClientMainForm();
+			try
+	         {
+	               UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");//신호등
+	            
+	         }catch(Exception ex) {}
+	           ClientMainForm m=new ClientMainForm();
 		}
 		public void connection(String id,String name)
 		{
@@ -80,12 +170,14 @@ public class ClientMainForm extends JFrame implements ActionListener{
 				out.write((Function.LOGIN+"|"+id+"|"+name+"\n").getBytes());
 			}catch(Exception ex){}
 		}
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			if(e.getSource()==login.b1)  // 로그인하면 지도있는 페이지로 넘어감
 			{
 				/*String id=login.tf.getText();
+				 * 
 				String name=login.pf.getText();
 				connection(id, name);*/
 				//login.setVisible(false);
@@ -101,7 +193,6 @@ public class ClientMainForm extends JFrame implements ActionListener{
 				{
 					mp.sex_answer.setText(login.woman.getText());
 				}
-				
 			}
 			if(e.getSource()==login.b2)  // 로그인에서 취소 누르면 취소
 			{

@@ -17,7 +17,7 @@ public class SearchBarForm extends JPanel {
 	
 	JTextField tf;
 	JLabel title;
-	Image map;
+	JLabel la;
 	
 	//JLabel 
 	
@@ -41,18 +41,20 @@ public class SearchBarForm extends JPanel {
 	      
 		setLayout(null);
 		
-		map=Toolkit.getDefaultToolkit().getImage("C:\\javaDev\\map.png");
+		//map=Toolkit.getDefaultToolkit().getImage("C:\\javaDev\\map.png");
+		la=new JLabel(new ImageIcon("C:\\javaDev\\메인지도.png"));
 		p1.setBounds(0,0,1920,310);
+		la.setBounds(150,310,1620,640);
 		//p2.setBounds(0,310,810,520);
-		p3.setBounds(810,310,810,520);
-		p4.setBounds(1620,310,300,770);
-		p5.setBounds(0,830,1620,250);
+		//p3.setBounds(810,310,810,520);
+		//p4.setBounds(1620,310,300,770);
+		p5.setBounds(0,950,1920,250);
 		
 		tf.setBounds(540,250,800,35);
 		b.setBounds(1345,242,50,50);
 		
-		mpb.setBounds(1690,10,100,40);
-		chat.setBounds(1800,10,100,40);
+		mpb.setBounds(1670,10,100,40);
+		chat.setBounds(1780,10,100,40);
 		
 		title.setForeground(Color.ORANGE);
 		title.setBounds(765, 10, 350, 200);
@@ -68,6 +70,7 @@ public class SearchBarForm extends JPanel {
 		add(p3);
 		add(p4);
 		add(p5);
+		add(la);
 		
 		
 		
@@ -76,9 +79,9 @@ public class SearchBarForm extends JPanel {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
+	/*@Override
 	protected void paintComponent(Graphics g) {
 		g.drawImage(map,0,310,810,520, this);
-	}
+	}*/
 }
 
