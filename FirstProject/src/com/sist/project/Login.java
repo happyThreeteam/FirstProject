@@ -11,7 +11,7 @@ public class Login extends JPanel {
 	JRadioButton woman;
 	
 	JTextField tf; 
-	JPasswordField pf;
+	JTextField pf;
 	JButton b1,b2;
 	Login()  
 	{ 
@@ -29,7 +29,7 @@ public class Login extends JPanel {
 		title=new JLabel("GOOD TASTE");
 		
 		tf=new JTextField();
-		pf=new JPasswordField();
+		pf=new JTextField();
 		
 		b1=new JButton("로그인");
 		b2=new JButton("취소");

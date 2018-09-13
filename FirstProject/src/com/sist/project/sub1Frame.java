@@ -17,8 +17,8 @@ public class sub1Frame extends JPanel{
 	
 	
 	JTextField tf; 
-	JButton b;  
-	JButton d; 
+	JButton b;  // 검색버튼
+	JButton d;  // 콤보박스 버튼
 	
 	Image pan1;
 	 

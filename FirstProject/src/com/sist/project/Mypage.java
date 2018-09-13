@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Mypage extends JPanel implements ActionListener {
+public class Mypage extends JPanel {
 	JPanel p1=new JPanel();
 	JLabel id = new JLabel("¾ÆÀÌµð ");
 	JLabel id_answer=new JLabel("");
@@ -67,10 +67,6 @@ public class Mypage extends JPanel implements ActionListener {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 	}
 
 }

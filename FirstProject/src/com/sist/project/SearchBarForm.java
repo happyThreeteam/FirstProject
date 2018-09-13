@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class SearchBarForm extends JPanel implements ActionListener {
+public class SearchBarForm extends JPanel {
 	CardLayout card=new CardLayout();
 	JPanel p1=new JPanel();
 	//JPanel p2=new JPanel();
@@ -13,11 +13,14 @@ public class SearchBarForm extends JPanel implements ActionListener {
 	 
 	JButton b;
 	public JButton mpb;
+	public JButton chat;
+	
 	JTextField tf;
 	JLabel title;
 	Image map;
 	
-	public JButton map_b;   
+	//JLabel 
+	
 	
 	public SearchBarForm() {
 		p1.setBackground(Color.blue); 
@@ -34,11 +37,11 @@ public class SearchBarForm extends JPanel implements ActionListener {
 	      b = new JButton("검색");
 	      // 마이페이지 버튼
 	      mpb = new JButton("마이페이지");
-	      map_b=new JButton("홍대"); 
+	      chat=new JButton("채팅창");
 	      
 		setLayout(null);
 		
-		map=Toolkit.getDefaultToolkit().getImage("C:\\javaDev\\map.jpg");
+		map=Toolkit.getDefaultToolkit().getImage("C:\\javaDev\\map.png");
 		p1.setBounds(0,0,1920,310);
 		//p2.setBounds(0,310,810,520);
 		p3.setBounds(810,310,810,520);
@@ -47,23 +50,25 @@ public class SearchBarForm extends JPanel implements ActionListener {
 		
 		tf.setBounds(540,250,800,35);
 		b.setBounds(1345,242,50,50);
-		mpb.setBounds(1800,10,100,40);
-		map_b.setBounds(0, 320, 80, 80); //홍대
+		
+		mpb.setBounds(1690,10,100,40);
+		chat.setBounds(1800,10,100,40);
 		
 		title.setForeground(Color.ORANGE);
 		title.setBounds(765, 10, 350, 200);
 		title.setFont(new Font("Rockwell Extra Bold",Font.BOLD,40));
 		
+		add(chat);
 		add(title);
 		add(tf);
 	    add(b);
-	    add(map_b); //홍대
 	    add(mpb);
 		add(p1);
 		//add(p2);
 		add(p3);
 		add(p4);
 		add(p5);
+		
 		
 		
 	}
@@ -74,11 +79,6 @@ public class SearchBarForm extends JPanel implements ActionListener {
 	@Override
 	protected void paintComponent(Graphics g) {
 		g.drawImage(map,0,310,810,520, this);
-	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
 	}
 }
 
