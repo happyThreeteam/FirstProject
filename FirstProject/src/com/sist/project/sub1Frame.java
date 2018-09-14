@@ -10,6 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.text.JTextComponent;
 
 public class sub1Frame extends JPanel{
    JPanel p1 = new JPanel();
@@ -22,27 +23,30 @@ public class sub1Frame extends JPanel{
    JTextField tf;
    JButton b;  
    JButton d;
+   JButton e1;
    JComboBox cb;
    JComboBox cb2;
    
    Image pan1;
    
-   
+  JTextField pp=new JTextField(); // 지도에서 받아오는 지역 이름입니다
+   //JLabel place;
    
    String 업종[]= {"업종 선택","중식", "한식", "일식","양식"};
    String 가격[] = {"가격 선택","~5천", "5천~1만", "1만~2만", "2만~3만", "3만~4만", "4만~5만","5만~"};
    
    public sub1Frame(){
-      
-      
+      pp.setEditable(false);
+      //pp.setOpaque(false);
+      //pp.setFont(new Font("맑은고딕",Font.BOLD,10));
       
       tf = new JTextField();   
        b = new JButton("검색");
        d = new JButton("검색");
+       e1 = new JButton("이전");
        p4.setBackground(Color.RED);
        
-      
-       
+       //place=new JLabel("");
       
       
       cb=new JComboBox(업종);
@@ -77,18 +81,6 @@ public class sub1Frame extends JPanel{
       
       setLayout(null);
       
-      
-      add(cb);
-      add(cb2);
-      
-      
-         
-
-   
-      
-      
-      
-      
       p1.setBounds(0, 310, 1920, 60);
       
       tf.setBounds(540,250,800,35);
@@ -97,23 +89,31 @@ public class sub1Frame extends JPanel{
       d.setBounds(1065, 315, 50 ,50);
       p4.setBounds(0, 370, 1920, 2000);
       
+      e1.setBounds(1405, 242, 50, 50);
       cb.setBounds(860, 327, 100, 20);
       cb2.setBounds(960, 327, 100, 20);
        
+      pp.setBounds(760, 327, 100, 20);
+      //place.setBounds(760, 327, 100, 20);
+      //place.setFont(new Font("맑은고딕",Font.BOLD,20));
+      //place.setVisible(false);
    /*   add(p2, BorderLayout.NORTH);
       add(p3, BorderLayout.NORTH);
       */
        
       
       
-      
+      add(cb);
+      add(cb2);
       add(tf);
       add(b);
       
       add(d);
+      add(e1);
+      add(pp);
       add(p1);
       add(p4);
-   
+     
       
       
    }
