@@ -137,11 +137,11 @@ public class ManagerGangnam {
          FileWriter fw=new FileWriter("c:\\data\\강남카테고리.txt");
          for(CategoryVO vo:list)
          {
-            String str=vo.getCateNo()+"|"
-                     +vo.getPoster()+"|"
-                     +vo.getTitle()+"|"
-                     +vo.getScore()+"|"
-                     +vo.getAddr().substring(0, vo.getAddr().lastIndexOf("-")).trim()+"|"
+            String str=vo.getCateNo()+"^"
+                     +vo.getPoster()+"^"
+                     +vo.getTitle()+"^"
+                     +vo.getScore()+"^"
+                     +vo.getAddr().substring(0, vo.getAddr().lastIndexOf("-")).trim()+"^"
                      +vo.getKind().substring(vo.getAddr().lastIndexOf("-")+1).trim()+"\r\n";
                      
                            
@@ -180,6 +180,11 @@ public class ManagerGangnam {
          System.out.println("Save..");
       }catch(Exception ex) {}
    }
+
+public static String FoodList(String find) {
+	// TODO Auto-generated method stub
+	return null;
+}
 
 }
 

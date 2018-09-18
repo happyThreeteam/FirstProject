@@ -33,7 +33,6 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
       sub2Frame sub2=new sub2Frame();
       DetailForm df=new DetailForm();
       Chat chat=new Chat();
-      
       JScrollPane js;
       JScrollPane js1;
       JScrollPane js2;
@@ -108,8 +107,10 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
                sbf.성북구.addMouseListener(this);
                sbf.은평구.addMouseListener(this);
                sbf.구로구.addMouseListener(this);
+               sub.button1.addActionListener(this);
+               sub.button2.addActionListener(this);
                //===========================================================================================================
-               js=new JScrollPane(sbf,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+               /*js=new JScrollPane(sbf,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                
                sbf.setPreferredSize(new Dimension(1920,1080));
                js.setPreferredSize(new Dimension(1920,980));
@@ -124,11 +125,11 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
                js1.setPreferredSize(new Dimension(1920,980));
                js1.setBounds(10,15,730,650);
                
-               js1.setViewportView(mp);
+               js1.setViewportView(mp);*/
                //===========================================================================================================mp전체 스크롤바
                
                //===========================================================================================================
-               js2=new JScrollPane(sub,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+               /*js2=new JScrollPane(sub,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                
                sub.setPreferredSize(new Dimension(1920,1080));
                js2.setPreferredSize(new Dimension(1920,980));
@@ -136,8 +137,8 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
                
                js2.setViewportView(sub);
                //============================================================================================================sub1전체 스크롤바
-               //===========================================================================================================
-               js3=new JScrollPane(sub2,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+*/               //===========================================================================================================
+               /*js3=new JScrollPane(sub2,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                
                sub2.setPreferredSize(new Dimension(1920,1080));
                js3.setPreferredSize(new Dimension(1920,980));
@@ -152,14 +153,20 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
                js4.setPreferredSize(new Dimension(1920,980));
                js4.setBounds(10,15,730,650);
                
-               js4.setViewportView(df);
+               js4.setViewportView(df);*/
                //===========================================================================================================sub2전체 스크롤바
-               add("SBF", js);
+               add("SUB", sub);
          add("LOGIN", login);
+         /*add("SBF", js);
          add("MP", js1);
-         add("SUB", js2);
+         
          add("SUB2", js3);
-         add("DF", js4);
+         add("DF", js4);*/
+         add("SBF", sbf);
+         add("MP", mp);
+         
+         add("SUB2", sub2);
+         add("DF", df);
          add("CHAT",chat);
       
          
@@ -282,6 +289,25 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
          //Sub1Frame에서 콤보설정하면 검색을 누르면 음식점을 선택하면 DetailForm
          // 콤보박스 설정 못하면 경고창
          
+         if(e.getSource()==sub.button1)
+			{
+				//System.out.println("1");
+				if(sub.p4.curpage>1)
+				{
+					//System.out.println("11111111");
+					sub.p4.curpage--;
+					sub.p4.getFoodView();
+				}
+			}
+			if(e.getSource()==sub.button2)
+			{
+				//System.out.println("2222222");
+				if(sub.p4.curpage<143)
+				{
+					sub.p4.curpage++;
+					sub.p4.getFoodView();
+				}
+			}
       }
       @Override
       public void mouseClicked(MouseEvent e) {

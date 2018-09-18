@@ -42,6 +42,7 @@ public class sub2Frame extends JPanel{
 		title.setFont(new Font("Rockwell Extra Bold",Font.BOLD,40));
 	
 	    
+		
 		add(title);
 		add(tf);
 		add(b);
