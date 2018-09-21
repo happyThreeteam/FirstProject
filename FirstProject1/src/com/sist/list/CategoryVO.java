@@ -2,6 +2,12 @@ package com.sist.list;
 
 public class CategoryVO {
 	
+	public int getCateplace() {
+		return cateplace;
+	}
+	public void setCateplace(int cateplace) {
+		this.cateplace = cateplace;
+	}
 	private int cateNo;
 	private String poster;
 	private String title;
@@ -9,6 +15,7 @@ public class CategoryVO {
 	private String addr;
 	private String kind;
 	private String link;
+	private int cateplace;
 	public int getCateNo() {
 		return cateNo;
 	}

@@ -29,7 +29,7 @@ public class sub1Frame extends JPanel{
    JComboBox cb2;
    
    JButton button1=new JButton("이전");
-   JButton button2=new JButton("이후");
+   JButton button2=new JButton("다음");
    
    Image pan1;
    
@@ -38,7 +38,6 @@ public class sub1Frame extends JPanel{
    
    
   JTextField pp=new JTextField(); // 지도에서 받아오는 지역 이름입니다
-   //JLabel place;
    
    String 업종[]= {"업종 선택","중식", "한식", "일식","양식"};
    String 가격[] = {"가격 선택","~5천", "5천~1만", "1만~2만", "2만~3만", "3만~4만", "4만~5만","5만~"};
@@ -46,23 +45,16 @@ public class sub1Frame extends JPanel{
    
    public sub1Frame(){
       pp.setEditable(false);
-      //pp.setOpaque(false);
-      //pp.setFont(new Font("맑은고딕",Font.BOLD,10));
       
       tf = new JTextField();   
        b = new JButton("검색");
        d = new JButton("검색");
        e1 = new JButton("이전");
-       //p4.setBackground(Color.RED);
-       
-       //place=new JLabel("");
       
 
       cb=new JComboBox(업종);
       cb2=new JComboBox(가격);
       
-      /*button1.setBounds(700, 990, 50, 30);
-      button2.setBounds(780, 990, 50, 30);*/
       
    /*   cb.addActionListener(new ActionListener() {
          
@@ -98,19 +90,17 @@ public class sub1Frame extends JPanel{
       b.setBounds(1345,242,50,50);
       
       d.setBounds(1065, 315, 50 ,50);
-      p4.setBounds(50, 400, 1800, 500);
+      p4.setBounds(0, 350, 1920, 620);
       
       e1.setBounds(1405, 242, 50, 50);
       cb.setBounds(860, 327, 100, 20);
       cb2.setBounds(960, 327, 100, 20);
-      ///p5.setBounds(0, 980, 1920, 100);
       pp.setBounds(760, 327, 100, 20);
-      //place.setBounds(760, 327, 100, 20);
-      //place.setFont(new Font("맑은고딕",Font.BOLD,20));
-      //place.setVisible(false);
       
-      button1.setBounds(700,  980, 50 ,  50);
-      button2.setBounds(780,  980, 50 ,  50);
+      button1.setBounds(860,  980, 70 ,  50);
+      button2.setBounds(960,  980, 70 ,  50);
+      button1.setOpaque(true);
+      button2.setOpaque(true);
       add(cb);
       add(cb2);
       add(tf);

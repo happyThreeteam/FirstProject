@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -21,11 +22,16 @@ import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 
 import com.sist.common.Function;
+import com.sist.list.CategoryVO;
+import com.sist.list.FoodData1;
+import com.sist.list.FoodDetail1;
+import com.sist.list.FoodHouseVO;
 
 import java.util.*;
 
 public class ClientMainForm extends JFrame implements ActionListener, MouseListener{
       CardLayout card=new CardLayout();
+      //ClientMainForm cmf=new ClientMainForm();
       Login login=new Login(); 
       Mypage mp =new Mypage();
       SearchBarForm sbf=new SearchBarForm();
@@ -39,12 +45,13 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
       JScrollPane js3;
       JScrollPane js4;
       
-      
+      ArrayList<CategoryVO>tempList=new ArrayList<CategoryVO>();
       
        // 네트워크(전화가 필요)
        Socket s;// 서버 연결
        BufferedReader in;// 서버에서 들어오는 결과값 받기
        OutputStream out; // 서버로 요청값 보내기
+       int no=0;
       public ClientMainForm()  
       {
          setLayout(card);
@@ -109,67 +116,20 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
                sbf.구로구.addMouseListener(this);
                sub.button1.addActionListener(this);
                sub.button2.addActionListener(this);
-               //===========================================================================================================
-               /*js=new JScrollPane(sbf,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                
-               sbf.setPreferredSize(new Dimension(1920,1080));
-               js.setPreferredSize(new Dimension(1920,980));
-               js.setBounds(10,15,730,650);
-               
-               js.setViewportView(sbf);
-               //===========================================================================================================sbf전체 스크롤바
-               //===========================================================================================================
-                js1=new JScrollPane(mp,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-               
-               mp.setPreferredSize(new Dimension(1920,1080));
-               js1.setPreferredSize(new Dimension(1920,980));
-               js1.setBounds(10,15,730,650);
-               
-               js1.setViewportView(mp);*/
-               //===========================================================================================================mp전체 스크롤바
-               
-               //===========================================================================================================
-               /*js2=new JScrollPane(sub,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-               
-               sub.setPreferredSize(new Dimension(1920,1080));
-               js2.setPreferredSize(new Dimension(1920,980));
-               js2.setBounds(10,15,730,650);
-               
-               js2.setViewportView(sub);
-               //============================================================================================================sub1전체 스크롤바
-*/               //===========================================================================================================
-               /*js3=new JScrollPane(sub2,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-               
-               sub2.setPreferredSize(new Dimension(1920,1080));
-               js3.setPreferredSize(new Dimension(1920,980));
-               js3.setBounds(10,15,730,650);
-               
-               js3.setViewportView(sub2);
-               //===========================================================================================================sub2전체 스크롤바
-             //===========================================================================================================
-               js4=new JScrollPane(df,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-               
-               df.setPreferredSize(new Dimension(1920,1080));
-               js4.setPreferredSize(new Dimension(1920,980));
-               js4.setBounds(10,15,730,650);
-               
-               js4.setViewportView(df);*/
-               //===========================================================================================================sub2전체 스크롤바
-               add("SUB", sub);
-         add("LOGIN", login);
-         /*add("SBF", js);
-         add("MP", js1);
-         
-         add("SUB2", js3);
-         add("DF", js4);*/
+               sub.p4.sps[1].la.addMouseListener(this);
+             
+           add("LOGIN", login);
+           add("SUB", sub);
+        
          add("SBF", sbf);
          add("MP", mp);
          
          add("SUB2", sub2);
-         add("DF", df);
-         add("CHAT",chat);
-      
          
+         add("CHAT",chat);
+        
+         add("DF", df);  
          setSize(1920, 1080);
           
           
@@ -296,7 +256,9 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
 				{
 					//System.out.println("11111111");
 					sub.p4.curpage--;
-					sub.p4.getFoodView();
+				    tempList=FoodData1.FoodLocation(no, sub.p4.curpage);
+					sub.p4.sub1_p4_print(tempList,sub.p4.curpage);
+					
 				}
 			}
 			if(e.getSource()==sub.button2)
@@ -305,7 +267,9 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
 				if(sub.p4.curpage<143)
 				{
 					sub.p4.curpage++;
-					sub.p4.getFoodView();
+					 tempList=FoodData1.FoodLocation(no, sub.p4.curpage);
+					sub.p4.sub1_p4_print(tempList,sub.p4.curpage);
+						
 				}
 			}
       }
@@ -436,29 +400,56 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
                sbf.대전.setForeground(Color.black);
             }
          }
-
+         //if(e.getSource()==sub.p4)
          if(e.getSource()==sbf.속초시)
          {
+        	 tempList.clear();
+        	 setResizable(true);
+        	 ArrayList<CategoryVO> list=FoodData1.FoodLocation(3,1);
+        	no=3;
+             sub.p4.sub1_p4_print(list, 1);
+             df.p2.DetailForm_p2_print(1);
             card.show(getContentPane(), "SUB");
             sub.pp.setText("속초시");
          }
          if(e.getSource()==sbf.강릉시)
          {
+        	 setResizable(true);
+        	 tempList.clear();
+        	 ArrayList<CategoryVO> list=FoodData1.FoodLocation(4,1);
+        	 no=4;
+             sub.p4.sub1_p4_print(list, 1);
             card.show(getContentPane(), "SUB");
             sub.pp.setText("강릉시");
          }
          if(e.getSource()==sbf.강남구)
-         {
-            card.show(getContentPane(), "SUB");
+         { 
+        	 setResizable(true);
+        	 tempList.clear();
+        	 ArrayList<CategoryVO> list=FoodData1.FoodLocation(1,1);
+        	 no=1;
+             sub.p4.sub1_p4_print(list, 1);
+        	 card.show(getContentPane(), "SUB");
             sub.pp.setText("강남구");
          }
          if(e.getSource()==sbf.마포구)
          {
+        	 setResizable(true);
+        	 tempList.clear();
+        	 ArrayList<CategoryVO> list=FoodData1.FoodLocation(2,1);
+        	 no=2;
+             sub.p4.sub1_p4_print(list, 1);
             card.show(getContentPane(), "SUB");
             sub.pp.setText("마포구");
          }
 
-        
+         if(e.getSource()==sub.p4.sps[1].la)
+         {
+        	 System.out.println(sub.p4.sps[1].la1.getText());
+        	 FoodHouseVO vo=FoodDetail1.FoodDetail(sub.p4.sps[1].la1.getText());
+        	 System.out.println(vo.getTitle()+vo.getKind());
+        	 
+         }
       }
       @Override
       public void mousePressed(MouseEvent e) {

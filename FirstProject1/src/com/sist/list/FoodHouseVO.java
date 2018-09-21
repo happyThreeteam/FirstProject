@@ -3,6 +3,12 @@ package com.sist.list;
 public class FoodHouseVO {
 	
 	
+	public int getCateplace() {
+		return cateplace;
+	}
+	public void setCateplace(int cateplace) {
+		this.cateplace = cateplace;
+	}
 	public int getCateNo() {
 		return cateNo;
 	}
@@ -15,6 +21,7 @@ public class FoodHouseVO {
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+	private int cateplace;
 	private String title;
 	private String addr;
 	private String tel;

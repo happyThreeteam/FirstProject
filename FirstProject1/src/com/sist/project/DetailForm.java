@@ -10,7 +10,7 @@ import java.awt.*;
 public class DetailForm extends JPanel{
 
 	   JPanel p1=new JPanel(); 
-	   JPanel p2=new JPanel();
+	   DetailForm_p2 p2=new DetailForm_p2();
 	   JPanel p3=new JPanel();
 	   JPanel p4=new JPanel();
 	   
@@ -22,7 +22,7 @@ public class DetailForm extends JPanel{
      public DetailForm(){
 
        p1.setBackground(Color.BLUE);
-       p2.setBackground(Color.orange);
+       //p2.setBackground(Color.orange);
        p3.setBackground(Color.PINK);
        p4.setBackground(Color.lightGray);
        

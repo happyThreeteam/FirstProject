@@ -17,50 +17,56 @@ public class sub1_p4 extends JPanel{
 	int curpage=1;
 	JLabel la;
 	
-	/*JButton button1=new JButton("이전");
-	   JButton button2=new JButton("이후");*/
-	   
-    sub_p4_small[] sps=new sub_p4_small[10];
+    sub_p4_small[] sps=new sub_p4_small[20];
     ArrayList<CategoryVO> list=new ArrayList<CategoryVO>();
     public sub1_p4() {
     	try {
-    		list=FoodData1.FoodAllData(1);
-    		setLayout(new GridLayout(5, 2));
-    		for(int i=0; i<list.size(); i++)
-    		{
-    			sps[i]=new sub_p4_small();
-    			sps[i].sub_print(list.get(i));
-    			add(sps[i]);
-    		}
-    	}catch(Exception ex) {}
-    	
-    	/*button1.setBounds(700, 990, 50, 30);
-        button2.setBounds(780, 990, 50, 30);
-       button1.setOpaque(false);
-       button2.setOpaque(false);
-         add(button1);
-	     add(button2);*/
-    /*button1.addActionListener(this);
-    button2.addActionListener(this);*/
-    }
-    public void getFoodView()
-    {
-    	  sub1_p4_print(curpage);
+            list=FoodData1.FoodAllData(1);
+            setLayout(null);
+            int k=0;
+            for(int i=0; i<list.size(); i++)
+            {
+               
+               sps[i]=new sub_p4_small();
+               sps[i].sub_print(list.get(i));
+               /*if(i==5)
+               {
+                  k=0;
+               }
+               if(i<5)
+               {
+                  sps[i].setBounds(10+(k*320), 15, 545, 350);
+               }
+               else
+               {
+                  sps[i].setBounds(10+(k*320), 300, 545, 350);
+               }*/
+               if(i==5) {
+                  k=0;
+               }
+               if(i<5)
+               {
+                  sps[i].setBounds((k*384), 0, 384, 310);
+               }
+               else
+               {
+                  sps[i].setBounds((k*384), 310, 384, 310);
+               }
+               add(sps[i]);
+               k++;
+               
+            }
+         }catch(Exception ex) {}
     }
 
-    public void sub1_p4_print(int page)
+    public void sub1_p4_print(ArrayList<CategoryVO> list,int page)
     {
     	
     	try {
-    		list=FoodData1.FoodAllData(page);
-    		//setLayout(new GridLayout(5, 2));
-    		//System.out.println(list.size());
+    		
     		for(int i=0; i<list.size(); i++)
     		{
-    			//sps[i].removeAll();
     			sps[i].sub_print(list.get(i));
-    			//sps[i].validate();
-    			//add(sps[i]);
     		}
     	}catch(Exception ex) {}
     }

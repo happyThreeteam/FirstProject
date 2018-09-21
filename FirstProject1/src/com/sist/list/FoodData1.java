@@ -11,12 +11,13 @@ import javax.naming.spi.NamingManager;
 import com.sist.list.*;
 
 public class FoodData1 {
-  private static ArrayList<CategoryVO> gangnam=new ArrayList<CategoryVO>();
+  private static ArrayList<CategoryVO> category=new ArrayList<CategoryVO>();
+  
   static
   {
       try
       {
-         FileInputStream fr=new FileInputStream("c:\\data\\강남카테고리.txt");
+         FileInputStream fr=new FileInputStream("c:\\data\\카테고리.txt");
          BufferedReader br=new BufferedReader(new InputStreamReader(fr));
          while(true)
          {
@@ -26,23 +27,20 @@ public class FoodData1 {
                break;
            try
             {
-             // System.out.println(2);
                StringTokenizer st=new StringTokenizer(str, "^");
                CategoryVO vo=new CategoryVO();
+               vo.setCateplace(Integer.parseInt(st.nextToken()));
                vo.setCateNo(Integer.parseInt(st.nextToken()));
               vo.setPoster(st.nextToken());
                vo.setTitle(st.nextToken());
                 vo.setScore(st.nextToken());
                 vo.setAddr(st.nextToken());
                 vo.setKind(st.nextToken());
-                gangnam.add(vo);
+                category.add(vo);
                 System.out.println(vo.getKind());
             }catch(Exception ex){
                //System.out.println(ex.getMessage());
             }
-            
-         
-           
          }
       }catch(Exception ex)
       {
@@ -62,14 +60,14 @@ public class FoodData1 {
        */
       int end=page*rowSize;
       // 403  ==> 40 => 41   ==> 400 ==> 403
-      int t=(int)(Math.ceil(gangnam.size()/10.0));
+      int t=(int)(Math.ceil(category.size()/10.0));
       if(page==t)
       {
-         end=gangnam.size()-1;
+         end=category.size()-1;
       }
       for(int i=start;i<end;i++)
       {
-         CategoryVO vo=gangnam.get(i);
+         CategoryVO vo=category.get(i);
          list.add(vo);
       }
       return list;
@@ -77,7 +75,7 @@ public class FoodData1 {
   public static CategoryVO FoodDetail(String title)
   {
      CategoryVO mData=new CategoryVO();
-      for(CategoryVO vo:gangnam)
+      for(CategoryVO vo:category)
       {
          if(vo.getTitle().equals(title))
          {
@@ -87,20 +85,48 @@ public class FoodData1 {
       }
       return mData;
   }
+  public static ArrayList<CategoryVO> FoodLocation(int no, int page)
+  {
+	  //System.out.println("page="+page);
+	  ArrayList<CategoryVO> list=new ArrayList<CategoryVO>();
+	  for(CategoryVO vo:category)
+	  {
+		  if(vo.getCateplace()==no)
+		  {
+			  System.out.println(vo.getCateplace()+vo.getTitle());
+			  list.add(vo);
+		  }
+	  }
+	  int j=0;//10
+      int rowSize=10;
+      int start=(page*rowSize)-rowSize;
+      
+      ArrayList<CategoryVO> list1=new ArrayList<CategoryVO>();
+      for(int i=0;i<list.size();i++)
+      {
+         CategoryVO vo=list.get(i);
+         if(j<rowSize && i>=start)
+         {
+            list1.add(vo);
+            j++;
+         }
+      }
+	  return list1;
+  }
   public static ArrayList<CategoryVO> FoodList(String find)
   {
       ArrayList<CategoryVO> list=new ArrayList<CategoryVO>();
       try
       {
-         String data=ManagerGangnam.FoodList(find);
-         String[] datas=data.split("|");
-         Pattern[] p=new Pattern[gangnam.size()];
+         String data=Manager.FoodList(find);
+         String[] datas=data.split("^");
+         Pattern[] p=new Pattern[category.size()];
          for(int i=0;i<p.length;i++)
          {
-            p[i]=Pattern.compile(gangnam.get(i).getTitle());
+            p[i]=Pattern.compile(category.get(i).getTitle());
          }
-         Matcher[] m=new Matcher[gangnam.size()];
-         int[] count=new int[gangnam.size()];
+         Matcher[] m=new Matcher[category.size()];
+         int[] count=new int[category.size()];
          for(String s:datas)
          {
             
@@ -114,12 +140,12 @@ public class FoodData1 {
             }
          }
          
-         for(int i=0;i<gangnam.size();i++)
+         for(int i=0;i<category.size();i++)
          {
-            if(count[i]>1 && gangnam.get(i).getTitle().length()>1)
+            if(count[i]>1 && category.get(i).getTitle().length()>1)
             {
-               System.out.println(gangnam.get(i).getTitle()+" "+count[i]);
-               CategoryVO vo=FoodDetail(gangnam.get(i).getTitle());
+               System.out.println(category.get(i).getTitle()+" "+count[i]);
+               CategoryVO vo=FoodDetail(category.get(i).getTitle());
                list.add(vo);
             }
          }
@@ -129,9 +155,5 @@ public class FoodData1 {
          //System.out.println(ex.getMessage());
       }
       return list;
-  }
-  
-  public static void main(String[] args) {
-     
   }
 }

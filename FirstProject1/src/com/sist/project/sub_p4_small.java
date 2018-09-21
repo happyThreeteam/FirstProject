@@ -40,12 +40,12 @@ public class sub_p4_small extends JPanel{
 		
 		setLayout(null);
 		
-		la.setBounds(10, 5, 150, 200);
-    	la1.setBounds(165, 5, 350, 30);
-    	
-    	la2.setBounds(165, 45, 60, 30);
-    	la3.setBounds(165, 80, 60, 30);
-    	la4.setBounds(165, 115, 60, 30);
+		la.setBounds(50, 55, 150, 200);
+	       la1.setBounds(220, 55, 300, 30);
+	       
+	       la2.setBounds(220, 95, 300, 30);
+	       la3.setBounds(220, 135, 300, 30);
+	       la4.setBounds(220, 175, 300, 30);
     	
     	add(la);
     	add(la1);
@@ -68,6 +68,17 @@ public class sub_p4_small extends JPanel{
 		la3.setText(vo.getAddr());
 		la4.setText(vo.getKind());
 	}
+	/*public void posterAll(CategoryVO vo)
+	{
+		try
+    	{
+    		URL url=new URL(vo.getPoster());
+    		Image img=getImageSizeChange(new ImageIcon(url), 300, 250);
+    		la.setIcon(new ImageIcon(img));
+    		System.out.println(url);
+    	}catch(Exception ex){}
+	}*/
+	
     public Image getImageSizeChange(ImageIcon icon,int width,int height)
     {
        	Image img=icon.getImage();

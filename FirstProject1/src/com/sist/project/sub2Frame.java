@@ -8,8 +8,6 @@ public class sub2Frame extends JPanel{
 	JPanel p1 = new JPanel();
 	JPanel p2 = new JPanel();
 	
-	
-	
 	JTextField tf;
 	JButton b;
 	JButton back;
