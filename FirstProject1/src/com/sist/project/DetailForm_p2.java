@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import com.sist.list.CategoryVO;
 import com.sist.list.FoodDetail1;
 import com.sist.list.FoodHouseVO;
 
@@ -25,22 +26,21 @@ public class DetailForm_p2 extends JPanel{
     			add(sps[i]);
     		}
     	}catch(Exception ex) {}
+		
 	}
-	 public void getFoodView()
-	 {
-	    	 //DetailForm_p2_print(curpage);
-	 }
 	 public void DetailForm_p2_print(int page)
 	 {
 	    	
 	    	try {
 	    		   
-	    		   for(int i=0; i<list.size(); i++)
+	    		   for(int i=0; i<10; i++)
 	       		{
 	    			sps[i].sub_print(list.get(i));
 	       		}
 	    	}catch(Exception ex) {}
+		 
 	 }
+	
 	 public Image getImageSizeChange(ImageIcon icon,int width,int height)
 	    {
 	    	Image img=icon.getImage();

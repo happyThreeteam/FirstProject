@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -82,6 +83,8 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
                }
             });
 
+               
+               
                login.b1.addActionListener(this);
                login.b2.addActionListener(this);
                sbf.mpb.addActionListener(this);
@@ -117,20 +120,22 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
                sub.button1.addActionListener(this);
                sub.button2.addActionListener(this);
                
-               sub.p4.sps[1].la.addMouseListener(this);
-             
-           add("LOGIN", login);
-           add("SUB", sub);
-        
-         add("SBF", sbf);
-         add("MP", mp);
-         
-         add("SUB2", sub2);
-         
-         add("CHAT",chat);
-        
-         add("DF", df);  
-         setSize(1920, 1080);
+               for(int i=0; i<10; i++) {
+            	   sub.p4.sps[i].bu5.addMouseListener(this);
+               }
+               add("SUB", sub);
+		         add("LOGIN", login);
+		         
+		        
+		         add("SBF", sbf);
+		         add("MP", mp);
+		         
+		         add("SUB2", sub2);
+		         
+		         add("CHAT",chat);
+		        
+		         add("DF", df);  
+		         setSize(1920, 1080);
           
           
 
@@ -149,7 +154,7 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
                   UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");//신호등
                
             }catch(Exception ex) {}
-              ClientMainForm m=new ClientMainForm();
+              	ClientMainForm m=new ClientMainForm();
       }
       public void connection(String id,String name)
       {
@@ -408,7 +413,6 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
         	 ArrayList<CategoryVO> list=FoodData1.FoodLocation(3,1);
         	no=3;
              sub.p4.sub1_p4_print(list, 1);
-             df.p2.DetailForm_p2_print(1);
             card.show(getContentPane(), "SUB");
             sub.pp.setText("속초시");
          }
@@ -431,6 +435,7 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
              sub.p4.sub1_p4_print(list, 1);
         	 card.show(getContentPane(), "SUB");
             sub.pp.setText("강남구");
+            
          }
          if(e.getSource()==sbf.마포구)
          {
@@ -442,13 +447,32 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
             card.show(getContentPane(), "SUB");
             sub.pp.setText("마포구");
          }
-
-         if(e.getSource()==sub.p4.sps[1].la)
-         {
-        	 System.out.println(sub.p4.sps[1].la1.getText());
-        	 FoodHouseVO vo=FoodDetail1.FoodDetail(sub.p4.sps[1].la1.getText());
-        	 System.out.println(vo.getTitle()+vo.getKind());
-        	 
+         
+         
+         for(int i=0; i<10; i++) {
+        	 if(e.getSource()==sub.p4.sps[i].bu5)
+             {
+        		
+        		 //card.show(getContentPane(), "DF");
+            	 //System.out.println(sub.p4.sps[i].la1.getText());
+            	 /*FoodHouseVO vo=FoodDetail1.FoodDetail(sub.p4.sps[i].la1.getText()+sub.p4.sps[i].la2.getText()+sub.p4.sps[i].la3.getText()
+            			 																				+sub.p4.sps[i].la4.getText());*/
+            	 //System.out.println(vo.getTitle()+vo.getKind());
+            	 //JOptionPane.showMessageDialog(this, "업체명:"+vo.getTitle()+"\n주소:"+vo.getAddr());
+        		 FoodHouseVO vo=FoodDetail1.FoodDetail(sub.p4.sps[i].la1.getText());
+        		 /*System.out.println(sub.p4.sps[i].la1.getText()+sub.p4.sps[i].la2.getText()+sub.p4.sps[i].la3.getText()
+            			 																				+sub.p4.sps[i].la4.getText());*/
+        		
+        		 
+        		/* df.p2.la.setText(vo.getPoster());
+        		 df.p2.la1.setText(vo.getTitle());
+        		 df.p2.la2.setText(vo.getAddr());
+        		 df.p2.la3.setText(vo.getPrice());
+        		 df.p2.la4.setText(vo.getKind());*/
+        		 df.p2.sub_print(vo);
+        		 
+        		 card.show(getContentPane(), "DF");
+             }
          }
       }
       @Override

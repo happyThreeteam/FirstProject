@@ -4,13 +4,16 @@ import javax.swing.*;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+
+import com.sist.list.FoodHouseVO;
+
 import java.awt.event.*;
 import java.awt.*;
 
 public class DetailForm extends JPanel{
 
 	   JPanel p1=new JPanel(); 
-	   DetailForm_p2 p2=new DetailForm_p2();
+	   DetailForm_p2_small p2=new DetailForm_p2_small();
 	   JPanel p3=new JPanel();
 	   JPanel p4=new JPanel();
 	   

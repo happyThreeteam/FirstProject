@@ -30,17 +30,20 @@ public class FoodDetail1 {
 	               vo.setCateNo(Integer.parseInt(st.nextToken()));
 	               vo.setTitle(st.nextToken());
 	                vo.setAddr(st.nextToken());
-	                vo.setTel(st.nextToken());
+	                
 	                vo.setPrice(st.nextToken());
+	                
 	                vo.setKind(st.nextToken());
+	                
 	                vo.setHour(st.nextToken());
-	                vo.setCar(st.nextToken());
-	                vo.setReview(st.nextToken());
 	                vo.setPoster(st.nextToken());
+	         
+	               vo.setCar(st.nextToken());
+	                vo.setReview(st.nextToken());
 	               // vo.setLink(st.nextToken());
 	                detail.add(vo);
 	            }catch(Exception ex){
-	               System.out.println(ex.getMessage());
+	               System.out.println("Data:"+ex.getMessage());
 	            }
 	            
 	         
@@ -79,14 +82,12 @@ public class FoodDetail1 {
 	 public static FoodHouseVO FoodDetail(String title)               // 포스터 클릭시 디테일
 	  {
 		 FoodHouseVO mData=new FoodHouseVO();
-	      for(FoodHouseVO vo:detail)
+		 //Manager fm=new Manager();
+	      for(FoodHouseVO fvo:detail)
 	      {
-	    	  System.out.println("1:"+title);
-	    	  System.out.println("2:"+vo.getTitle());
-	         if(vo.getTitle().trim().contains(title.trim()))
+	         if(fvo.getTitle().trim().contains(title.trim()))
 	         {
-	        	 System.out.println("same");
-	            mData=vo;
+	            mData=fvo;
 	            break;
 	         }
 	      }

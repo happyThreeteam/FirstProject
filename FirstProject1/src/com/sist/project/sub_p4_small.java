@@ -20,8 +20,10 @@ import com.sist.list.FoodHouseVO;
 public class sub_p4_small extends JPanel{
 	int curpage=1;
 	
-	JLabel la; // 이미지
+	JLabel la=new JLabel(""); // 이미지
     JLabel la1,la2,la3,la4; //이름,평점,주소,종류
+    JButton bu5;
+
     //ArrayList<CategoryVO> list=new ArrayList<CategoryVO>();
 	public sub_p4_small(){
 		
@@ -36,7 +38,8 @@ public class sub_p4_small extends JPanel{
 		
 		
 		la4=new JLabel();
-		
+		 bu5=new JButton("상세보기");
+
 		
 		setLayout(null);
 		
@@ -46,13 +49,14 @@ public class sub_p4_small extends JPanel{
 	       la2.setBounds(220, 95, 300, 30);
 	       la3.setBounds(220, 135, 300, 30);
 	       la4.setBounds(220, 175, 300, 30);
-    	
+	       bu5.setBounds(220, 215, 100, 30);
+
     	add(la);
     	add(la1);
     	add(la2);
     	add(la3);
     	add(la4);
-    	
+    	add(bu5);
     	
 	}
 	public void sub_print(CategoryVO vo)
@@ -68,7 +72,8 @@ public class sub_p4_small extends JPanel{
 		la3.setText(vo.getAddr());
 		la4.setText(vo.getKind());
 	}
-	/*public void posterAll(CategoryVO vo)
+	
+	public void posterAll(CategoryVO vo)
 	{
 		try
     	{
@@ -77,7 +82,7 @@ public class sub_p4_small extends JPanel{
     		la.setIcon(new ImageIcon(img));
     		System.out.println(url);
     	}catch(Exception ex){}
-	}*/
+	}
 	
     public Image getImageSizeChange(ImageIcon icon,int width,int height)
     {

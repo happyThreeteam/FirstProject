@@ -71,47 +71,51 @@ public class Manager {
 	             Elements link=doc.select("main");
 	             for(int j=0;j<10;j++)
 	             {
-	                try
-	                {
-	                   
-	                   //System.out.println(link.get(j).attr("href"));
-	                   //String food="http://www.mangoplate.com"+link.get(j).attr("data-url");
-	                   Document doc2=Jsoup.connect("http://www.mangoplate.com/restaurants/"+link.get(j).attr("data-restaurant_key")).get();
-	                   Element title=doc2.selectFirst("span.title h1.restaurant_name");
-	                   Element addr=doc2.select("table.info tr td").get(0);
-	                   Element price=doc2.select("table.info tr td").get(3);
-	                   Element kind=doc2.select("table.info tr td").get(2);
-	                   Element hour=doc2.select("table.info tr td").get(5);
-	                   Element car=doc2.select("table.info tr td").get(4);
-	                   Element review=doc2.select("div.review_wraper span").get(0);
-	                   Element poster=doc2.selectFirst("img.center-croping");
-	                   
-	                   System.out.println(title.text());
-	                   System.out.println(addr.text());
-	                   System.out.println(price.text());
-	                   System.out.println(kind.text());
-	                   System.out.println(hour.text());
-	                   System.out.println(car.text());
-	                   System.out.println(review.text());
-	                   System.out.println(poster.attr("src"));
-	                   
-	                   FoodHouseVO fvo=new FoodHouseVO();
-	                   fvo.setCateNo(vo.getCateNo());
-	                   fvo.setTitle(vo.getTitle());
-	                   fvo.setAddr(addr.text());
-	                   fvo.setPrice(price.text());
-	                   fvo.setKind(kind.text());
-	                   fvo.setHour(hour.text());
-	                   fvo.setCar(car.text());
-	                   fvo.setReview(review.text());
-	                   fvo.setPoster(poster.attr("src"));
-	                   
-	                   list.add(fvo);
-	                   
-	                }catch(Exception ex)
-	                {
-	                   
-	                }
+			                try
+			                {
+			                   
+			                   //System.out.println(link.get(j).attr("href"));
+			                   //String food="http://www.mangoplate.com"+link.get(j).attr("data-url");
+			                   Document doc2=Jsoup.connect("http://www.mangoplate.com/restaurants/"+link.get(j).attr("data-restaurant_key")).get();
+			                   Element title=doc2.selectFirst("span.title h1.restaurant_name");
+			                   Element addr=doc2.select("table.info tr td").get(0);
+			                   Element price=doc2.select("table.info tr td").get(3);
+			                   Element kind=doc2.select("table.info tr td").get(2);
+			                   Element hour=doc2.select("table.info tr td").get(5);
+			                   Element car=doc2.select("table.info tr td").get(4);
+			                   Element review=doc2.select("div.review_wraper span").get(0);
+			                   Element poster=doc2.selectFirst("img.center-croping");
+			                   
+			                   System.out.println(title.text());
+			                   System.out.println(addr.text());
+			                   System.out.println(price.text());
+			                   System.out.println(kind.text());
+			                   System.out.println(hour.text());
+			                   System.out.println(poster.attr("src"));
+			                   System.out.println(car.text()); //X
+			                   System.out.println(review.text()); //X
+			                   
+			                   FoodHouseVO fvo=new FoodHouseVO();
+			                   fvo.setCateplace(vo.getCateplace());
+			                   fvo.setCateNo(vo.getCateNo());
+			                   fvo.setTitle(vo.getTitle());
+			                   fvo.setAddr(addr.text());
+			                   fvo.setPrice(price.text());
+			                   fvo.setKind(kind.text());
+			                   fvo.setHour(hour.text());
+			                   fvo.setPoster(poster.attr("src"));
+			                   
+			                   fvo.setCar(car.text()); //X
+			                   fvo.setReview(review.text()); //X
+			                   
+			                   
+			                   list.add(fvo);
+			                   
+			                }catch(Exception ex)
+			                {
+			                   
+			                }
+	            	 
 	             }
 	             System.out.println("======================");
 	          }
@@ -130,7 +134,7 @@ public class Manager {
       Manager fm=new Manager();
       
    
-      ArrayList<CategoryVO> list=fm.categoryAllData();
+     /* ArrayList<CategoryVO> list=fm.categoryAllData();
       try
       {
     	  File f=new File("c:\\data\\Ä«Å×°í¸®.txt");
@@ -155,7 +159,7 @@ public class Manager {
          System.out.println("Save End...");
       }catch(Exception ex) {}
    
-      
+      */
       
       ArrayList<FoodHouseVO> list2=fm.foodAllData();
       try
@@ -174,9 +178,9 @@ public class Manager {
                   +vo.getPrice()+"^"
                   +vo.getKind()+"^"
                   +vo.getHour()+"^"
-                  +vo.getCar()+"^"
-                  +vo.getReview()+"^"
-                  +vo.getPoster()+"\r\n";
+                  +vo.getPoster()+"^"
+                  +vo.getCar()+"^" //¾È¾¸
+                  +vo.getReview()+"\r\n"; //¾È¾¸
             	
             fw.write(str);
          }
