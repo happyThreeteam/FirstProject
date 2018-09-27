@@ -93,9 +93,6 @@ public class SearchBarForm extends JPanel {
       la=new JLabel(new ImageIcon("C:\\javaDev\\map.png"));
       p1.setBounds(0,0,1920,310);
       la.setBounds(150,310,1620,640);
-      //p2.setBounds(0,310,810,520);
-      //p3.setBounds(810,310,810,520); 
-      //p4.setBounds(1620,310,300,770);
       p5.setBounds(0,950,1920,250);
       
       p6.setBounds(1320, 310, 600, 640);
@@ -212,7 +209,6 @@ public class SearchBarForm extends JPanel {
       add(b);
       add(mpb);
       add(p1);
-      //add(p2);
       add(p3);
       add(p4);
       add(p5);

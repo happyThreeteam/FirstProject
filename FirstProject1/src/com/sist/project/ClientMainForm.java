@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,11 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.net.URL;
+import java.security.cert.PKIXRevocationChecker.Option;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -40,6 +45,7 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
       sub2Frame sub2=new sub2Frame();
       DetailForm df=new DetailForm();
       Chat chat=new Chat();
+      
       JScrollPane js;
       JScrollPane js1;
       JScrollPane js2;
@@ -57,34 +63,6 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
       {
          setLayout(card);
          
-         sub.cb.addActionListener(new ActionListener() {
-               
-               @Override
-               public void actionPerformed(ActionEvent e) {
-                  // TODO Auto-generated method stub
-                  JComboBox jcb=(JComboBox)e.getSource();
-                  int index=jcb.getSelectedIndex();
-                  if(index==0) {
-                     JOptionPane.showMessageDialog(null, "경고 메시지 내용", "경고 메시지 제목", JOptionPane.WARNING_MESSAGE);
-                  }
-                  
-               }
-            });
-               sub.cb2.addActionListener(new ActionListener() {
-               
-               @Override
-               public void actionPerformed(ActionEvent e) {
-                  // TODO Auto-generated method stub
-                  JComboBox jcb=(JComboBox)e.getSource();
-                  int index=jcb.getSelectedIndex();
-                  if(index==0) {
-                     JOptionPane.showMessageDialog(null, "경고 메시지 내용", "경고 메시지 제목", JOptionPane.WARNING_MESSAGE);
-                  }
-               }
-            });
-
-               
-               
                login.b1.addActionListener(this);
                login.b2.addActionListener(this);
                sbf.mpb.addActionListener(this);
@@ -119,28 +97,25 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
                sbf.구로구.addMouseListener(this);
                sub.button1.addActionListener(this);
                sub.button2.addActionListener(this);
-               
+               mp.ch.addActionListener(this);
+               df.mpb.addActionListener(this);
+               sub.mpb.addActionListener(this);
+               sub2.mpb.addActionListener(this);
                for(int i=0; i<10; i++) {
             	   sub.p4.sps[i].bu5.addMouseListener(this);
                }
-               add("SUB", sub);
+              
 		         add("LOGIN", login);
 		         
-		        
+		         add("SUB", sub);
 		         add("SBF", sbf);
 		         add("MP", mp);
-		         
+		        
 		         add("SUB2", sub2);
-		         
+		         add("DF", df);  
 		         add("CHAT",chat);
 		        
-		         add("DF", df);  
 		         setSize(1920, 1080);
-          
-          
-
-
-          
           
           setDefaultCloseOperation(EXIT_ON_CLOSE); // application 완전종료
           
@@ -174,15 +149,30 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
          // TODO Auto-generated method stub
          if(e.getSource()==login.b1)  // 로그인하면 지도있는 페이지로 넘어감
          {
-            /*String id=login.tf.getText();
-             * 
-            String name=login.pf.getText();
-            connection(id, name);*/
-            //login.setVisible(false);
+        	 if(login.tf.getText().isEmpty())
+        	 {
+        		 JOptionPane.showMessageDialog(null, "아이디를 입력해주세요.", "아이디 오류", JOptionPane.WARNING_MESSAGE);
+        	 }
+        	 else if(login.pf.getText().isEmpty())
+        	 {
+        		 JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요.", "비밀번호 오류", JOptionPane.WARNING_MESSAGE);
+        	 }
+        	 else
+        	 {
+        		 int input=JOptionPane.showConfirmDialog(null, "로그인하시겠습니까?",null,JOptionPane.OK_OPTION);
+        		 if(input==0)
+        		 {
+        			 card.show(getContentPane(), "SBF");
+        		 }
+        		 if(input==1)
+        		 {
+        			 card.show(getContentPane(), "LOGIN");
+        		 }
+        	 }
             
-            card.show(getContentPane(), "SBF");
             mp.id_answer.setText(login.tf.getText());
             mp.pwd_answer.setText(login.pf.getText());
+            
             if(login.man.isSelected())
             {
                mp.sex_answer.setText(login.man.getText());
@@ -192,6 +182,14 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
                mp.sex_answer.setText(login.woman.getText());
             }
          }
+         
+         if(e.getSource()==mp.ch)
+         {
+        	 card.show(getContentPane(), "LOGIN");
+        	 login.tf.setText(mp.id_answer.getText());
+        	 login.pf.setText(null);
+         }
+         
          if(e.getSource()==login.b2)  // 로그인에서 취소 누르면 취소
          {
             System.exit(0);
@@ -199,6 +197,19 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
          if(e.getSource()==sbf.mpb) // 서치바폼(지도)에서 마이페이지 버튼 클릭시
          {
             card.show(getContentPane(), "MP");
+         }
+         
+         if(e.getSource()==df.mpb)
+         {
+        	 card.show(getContentPane(), "MP");
+         }
+         if(e.getSource()==sub.mpb)
+         {
+        	 card.show(getContentPane(), "MP");
+         }
+         if(e.getSource()==sub2.mpb)
+         {
+        	 card.show(getContentPane(), "MP");
          }
          if(e.getSource()==sbf.b) // 서치바폼(지도)에서 검색버튼 클릭시
          {
@@ -211,9 +222,7 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
          
          if(e.getSource()==sub2.b)
          {
-            System.out.println("성공");
             card.show(getContentPane(), "SUB2");
-            
          }
          if(e.getSource()==sub.e1) {
         	 card.show(getContentPane(), "SBF");
@@ -232,6 +241,7 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
          if(e.getSource()==df.back)
          {
             card.show(getContentPane(), "SUB");
+            setResizable(true);
          }
          // 마이페이지 옆에 채팅창 버튼 클릭시 채팅창으로 넘어가기
          if(e.getSource()==sbf.chat)
@@ -250,16 +260,12 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
          }
          
          
-         // 지도를 클릭하면 Sub1Frame(콤보)으로 넘어가기
-         //Sub1Frame에서 콤보설정하면 검색을 누르면 음식점을 선택하면 DetailForm
-         // 콤보박스 설정 못하면 경고창
+         
          
          if(e.getSource()==sub.button1)
 			{
-				//System.out.println("1");
 				if(sub.p4.curpage>1)
 				{
-					//System.out.println("11111111");
 					sub.p4.curpage--;
 				    tempList=FoodData1.FoodLocation(no, sub.p4.curpage);
 					sub.p4.sub1_p4_print(tempList,sub.p4.curpage);
@@ -268,7 +274,6 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
 			}
 			if(e.getSource()==sub.button2)
 			{
-				//System.out.println("2222222");
 				if(sub.p4.curpage<143)
 				{
 					sub.p4.curpage++;
@@ -452,26 +457,16 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
          for(int i=0; i<10; i++) {
         	 if(e.getSource()==sub.p4.sps[i].bu5)
              {
-        		
-        		 //card.show(getContentPane(), "DF");
-            	 //System.out.println(sub.p4.sps[i].la1.getText());
-            	 /*FoodHouseVO vo=FoodDetail1.FoodDetail(sub.p4.sps[i].la1.getText()+sub.p4.sps[i].la2.getText()+sub.p4.sps[i].la3.getText()
-            			 																				+sub.p4.sps[i].la4.getText());*/
-            	 //System.out.println(vo.getTitle()+vo.getKind());
-            	 //JOptionPane.showMessageDialog(this, "업체명:"+vo.getTitle()+"\n주소:"+vo.getAddr());
         		 FoodHouseVO vo=FoodDetail1.FoodDetail(sub.p4.sps[i].la1.getText());
-        		 /*System.out.println(sub.p4.sps[i].la1.getText()+sub.p4.sps[i].la2.getText()+sub.p4.sps[i].la3.getText()
-            			 																				+sub.p4.sps[i].la4.getText());*/
-        		
-        		 
-        		/* df.p2.la.setText(vo.getPoster());
-        		 df.p2.la1.setText(vo.getTitle());
-        		 df.p2.la2.setText(vo.getAddr());
-        		 df.p2.la3.setText(vo.getPrice());
-        		 df.p2.la4.setText(vo.getKind());*/
         		 df.p2.sub_print(vo);
-        		 
         		 card.show(getContentPane(), "DF");
+        		 mp.la.setText(vo.getTitle());
+        		 try {
+		        		URL url=new URL(vo.getPoster());
+		         		Image img=getImageSizeChange(new ImageIcon(url), 400, 350);
+		         		mp.la2.setIcon(new ImageIcon(img));
+        		 }catch(Exception ex) {}
+        		 
              }
          }
       }
@@ -495,6 +490,12 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
          // TODO Auto-generated method stub
          
       }
+      public Image getImageSizeChange(ImageIcon icon,int width,int height)
+	    {
+	    	Image img=icon.getImage();
+	    	Image change=img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+	    	return change;
+	    }
 }
 
 

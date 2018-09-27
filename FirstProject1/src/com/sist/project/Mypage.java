@@ -1,10 +1,15 @@
 package com.sist.project;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+
+import com.sist.list.FoodHouseVO;
+
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 public class Mypage extends JPanel {
 	JPanel p1=new JPanel();
@@ -17,6 +22,10 @@ public class Mypage extends JPanel {
 	JLabel enjoy=new JLabel("¡Ò∞‹√£±‚");
 	JPanel p2=new JPanel(); //¡Ò∞‹√£±‚
 	
+	JLabel la=new JLabel(); //¡Ò∞‹√£±‚ title
+	JLabel la2=new JLabel(); //¡Ò∞‹√£±‚ poster
+	
+	JButton ch=new JButton("∫Ø∞Ê");
 	JButton b1=new JButton("»Æ¿Œ");
 	
 	JTable table1, table2;
@@ -34,22 +43,31 @@ public class Mypage extends JPanel {
 		sex.setFont(new Font("∏º¿∫ ∞ÌµÒ",Font.BOLD,20));		
 		sex_answer.setFont(new Font("∏º¿∫ ∞ÌµÒ",Font.BOLD,20));
 		enjoy.setFont(new Font("∏º¿∫ ∞ÌµÒ",Font.BOLD,20));
-		p2.setBackground(Color.orange);
+		//p2.setBackground(Color.orange);
+		p2.setBorder(new LineBorder(Color.BLACK));
 		b1.setFont(new Font("∏º¿∫ ∞ÌµÒ",Font.BOLD,20));
 		setLayout(null);
 		
+		ch.setFont(new Font("∏º¿∫ ∞ÌµÒ",Font.BOLD,10));
+		
 		
 		p1.setBounds(0, 0, 1920, 250);
-		p2.setBounds(400, 490, 1200, 450);
+		p2.setBounds(400, 490, 1200, 365);
 		id.setBounds(400, 280, 80, 100);
 		id_answer.setBounds(580,280,80,100);
 		pwd.setBounds(400, 320, 100, 100);
 		pwd_answer.setBounds(580,320,80,100);
+		
+		ch.setBounds(680, 355, 60, 30);
+		
 		sex.setBounds(400, 360, 80, 100);
 		sex_answer.setBounds(580,360,80,100);
 		enjoy.setBounds(400, 400, 80, 100);
-		b1.setBounds(400, 950, 80, 40);
+		b1.setBounds(400, 905, 80, 40);
 		
+		/*la.setBounds(200, 490, 100, 50);
+		la2.setBounds(200, 580, 400, 350);*/
+		la.setFont(new Font("∏º¿∫ ∞ÌµÒ",Font.PLAIN,20));
 		
 		
 		add(p1);
@@ -62,7 +80,9 @@ public class Mypage extends JPanel {
 		add(pwd_answer);
 		add(sex_answer);
 		add(b1);
-		
+		add(ch);
+		p2.add(la);
+		p2.add(la2);
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

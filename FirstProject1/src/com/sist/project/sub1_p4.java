@@ -59,10 +59,6 @@ public class sub1_p4 extends JPanel {
                
             }
             
-            /*for(int i=0; i<sps.length;i++) {
-          	  // sub.p4.sps[i]=new sub_p4_small();
-          	    sps[i].la.addMouseListener(this);
-             }*/
          }catch(Exception ex) {}
     }
 
@@ -86,43 +82,6 @@ public class sub1_p4 extends JPanel {
     	return change;
     }
 
-	/*@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		  for(int i=0; i<sps.length; i++) {
-		         if(e.getSource()==sps[i].la)
-		         {
-		        	 System.out.println(sps[i].la1.getText());
-		        	 FoodHouseVO vo=FoodDetail1.FoodDetail(sps[i].la1.getText());
-		        	 System.out.println(vo.getTitle()+vo.getKind());
-		         }
-	         }
-	}
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-    
-	*/
 	
 }

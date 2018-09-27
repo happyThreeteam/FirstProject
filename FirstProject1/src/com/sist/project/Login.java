@@ -11,7 +11,9 @@ public class Login extends JPanel {
 	JRadioButton woman;
 	
 	JTextField tf; 
-	JTextField pf;
+	JPasswordField pf;
+	
+	
 	JButton b1,b2;
 	Login()  
 	{ 
@@ -29,8 +31,8 @@ public class Login extends JPanel {
 		title=new JLabel("GOOD TASTE");
 		
 		tf=new JTextField();
-		pf=new JTextField();
-		
+		pf=new JPasswordField();
+		pf.setEchoChar('*');
 		b1=new JButton("로그인");
 		b2=new JButton("취소");
 		
@@ -83,8 +85,8 @@ public class Login extends JPanel {
 		woman.setBounds(210, 300, 100, 30);
 		tf.setBounds(190, 200, 100, 30);
 		pf.setBounds(190, 250, 100, 30);
+		
 		p.setBounds(100, 340, 185, 35);
-		//add(all);
 		
 		add(la1);
 		add(la2);

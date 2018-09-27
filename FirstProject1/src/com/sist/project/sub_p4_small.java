@@ -73,16 +73,7 @@ public class sub_p4_small extends JPanel{
 		la4.setText(vo.getKind());
 	}
 	
-	public void posterAll(CategoryVO vo)
-	{
-		try
-    	{
-    		URL url=new URL(vo.getPoster());
-    		Image img=getImageSizeChange(new ImageIcon(url), 300, 250);
-    		la.setIcon(new ImageIcon(img));
-    		System.out.println(url);
-    	}catch(Exception ex){}
-	}
+	
 	
     public Image getImageSizeChange(ImageIcon icon,int width,int height)
     {

@@ -25,12 +25,12 @@ public class sub1Frame extends JPanel{
    JButton b;  
    JButton d;
    JButton e1;
-   JComboBox cb;
-   JComboBox cb2;
+  // JComboBox cb;
+  // JComboBox cb2;
    
    JButton button1=new JButton("이전");
    JButton button2=new JButton("다음");
-   
+   JButton mpb;
    Image pan1;
    
    JLabel la; //null 값
@@ -39,8 +39,8 @@ public class sub1Frame extends JPanel{
    
   JTextField pp=new JTextField(); // 지도에서 받아오는 지역 이름입니다
    
-   String 업종[]= {"업종 선택","중식", "한식", "일식","양식"};
-   String 가격[] = {"가격 선택","~5천", "5천~1만", "1만~2만", "2만~3만", "3만~4만", "4만~5만","5만~"};
+  // String 업종[]= {"업종 선택","중식", "한식", "일식","양식"};
+   //String 가격[] = {"가격 선택","~5천", "5천~1만", "1만~2만", "2만~3만", "3만~4만", "4만~5만","5만~"};
    
    
    public sub1Frame(){
@@ -50,37 +50,8 @@ public class sub1Frame extends JPanel{
        b = new JButton("검색");
        d = new JButton("검색");
        e1 = new JButton("이전");
-      
+       mpb = new JButton("마이페이지");
 
-      cb=new JComboBox(업종);
-      cb2=new JComboBox(가격);
-      
-      
-   /*   cb.addActionListener(new ActionListener() {
-         
-         @Override
-         public void actionPerformed(ActionEvent e) {
-            // TODO Auto-generated method stub
-            JComboBox jcb=(JComboBox)e.getSource();
-            int index=jcb.getSelectedIndex();
-            if(index==0 && e.getSource()== d ) {
-               JOptionPane.showMessageDialog(null, "경고 메시지 내용", "경고 메시지 제목", JOptionPane.WARNING_MESSAGE);
-            }
-         }
-      });
-      cb2.addActionListener(new ActionListener() {
-         
-         @Override
-         public void actionPerformed(ActionEvent e) {
-            // TODO Auto-generated method stub
-            JComboBox jcb=(JComboBox)e.getSource();
-            int index=jcb.getSelectedIndex();
-            if(index==0 && e.getSource()== d ) {
-               JOptionPane.showMessageDialog(null, "경고 메시지 내용", "경고 메시지 제목", JOptionPane.WARNING_MESSAGE);
-            }
-         }
-      });*/
-      
 	     
       setLayout(null);
       
@@ -93,16 +64,19 @@ public class sub1Frame extends JPanel{
       p4.setBounds(0, 350, 1920, 620);
       
       e1.setBounds(1405, 242, 50, 50);
-      cb.setBounds(860, 327, 100, 20);
-      cb2.setBounds(960, 327, 100, 20);
-      pp.setBounds(760, 327, 100, 20);
+      pp.setBounds(900, 327, 100, 20);
+      
+      mpb.setBounds(1780,10,100,40);
       
       button1.setBounds(860,  980, 70 ,  50);
       button2.setBounds(960,  980, 70 ,  50);
       button1.setOpaque(true);
       button2.setOpaque(true);
-      add(cb);
-      add(cb2);
+      
+      b.setOpaque(true);  
+      d.setOpaque(true);
+      e1.setOpaque(true);
+      mpb.setOpaque(true);
       add(tf);
       add(b);
       
@@ -113,7 +87,7 @@ public class sub1Frame extends JPanel{
       add(p4);
       add(button1);
       add(button2);
-      
+      add(mpb);
    }
 
   
