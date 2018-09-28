@@ -10,7 +10,7 @@ import java.net.URL;
 public class DetailForm_p2_small extends JPanel{
 	JLabel la;
 	JLabel la1,la2,la3,la4,la5,la6;
-	
+	JLabel title;
 	public DetailForm_p2_small() {
 		la=new JLabel(); //Æ÷½ºÅÍ
 		la1=new JLabel(); //title
@@ -33,6 +33,8 @@ public class DetailForm_p2_small extends JPanel{
 		la4.setFont(new Font("¸¼Àº °íµñ",Font.PLAIN,20));
 		la5.setFont(new Font("¸¼Àº °íµñ",Font.PLAIN,20));
 		la6.setFont(new Font("¸¼Àº °íµñ",Font.PLAIN,20));
+		
+	      
 		add(la);
 		add(la1);
 		add(la2);
@@ -40,6 +42,7 @@ public class DetailForm_p2_small extends JPanel{
 		add(la4);
 		add(la5);
 		add(la6);
+		//add(title);
 	}
 	public void sub_print(FoodHouseVO vo)
 	{

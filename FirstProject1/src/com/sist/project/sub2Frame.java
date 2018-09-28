@@ -15,13 +15,12 @@ public class sub2Frame extends JPanel{
 	JButton mpb;
 	
 	public sub2Frame(){
-		p1.setBackground(Color.BLUE);
-		p2.setBackground(Color.RED);
+		//p1.setBackground(Color.BLUE);
+		//p2.setBackground(Color.RED);
 		mpb = new JButton("마이페이지");
 		tf = new JTextField();
 	    b = new JButton("검색");
 	    back=new JButton("이전");
-	    title=new JLabel("GOOD TASTE");
 	    
 		setLayout(null);
 		
@@ -35,9 +34,10 @@ public class sub2Frame extends JPanel{
 		b.setBounds(1345,242,50,50);
 		back.setBounds(1400, 242, 50, 50);
 		
+		title=new JLabel("GOOD TASTE");
 		title.setForeground(Color.ORANGE);
-		title.setBounds(765, 10, 350, 200);
-		title.setFont(new Font("Rockwell Extra Bold",Font.BOLD,40));
+	      title.setBounds(765, 10, 400, 200);
+	      title.setFont(new Font("Rockwell Extra Bold",Font.BOLD,50));
 		mpb.setBounds(1780,10,100,40);
 		mpb.setOpaque(true);
 		

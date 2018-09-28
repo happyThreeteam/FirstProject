@@ -156,4 +156,16 @@ public class FoodData1 {
       }
       return list;
   }
+  public static ArrayList<CategoryVO> FoodFindData(String title)
+  {
+      ArrayList<CategoryVO> list=new ArrayList<CategoryVO>();
+      for(CategoryVO vo:category)
+      {
+         if(vo.getTitle().contains(title))
+         {
+             list.add(vo);
+         }
+      }
+      return list;
+  }
 }

@@ -17,7 +17,7 @@ public class Login extends JPanel {
 	JButton b1,b2;
 	Login()  
 	{ 
-		back=Toolkit.getDefaultToolkit().getImage("C:\\javaDev\\icecream.jpg");
+		back=Toolkit.getDefaultToolkit().getImage("Image\\icecream.jpg");
 		
 		// 배치 
 		la1=new JLabel("아이디");

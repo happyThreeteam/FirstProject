@@ -1,6 +1,8 @@
 package com.sist.project;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +25,7 @@ public class sub_p4_small extends JPanel{
 	JLabel la=new JLabel(""); // 이미지
     JLabel la1,la2,la3,la4; //이름,평점,주소,종류
     JButton bu5;
-
+    JLabel title;
     //ArrayList<CategoryVO> list=new ArrayList<CategoryVO>();
 	public sub_p4_small(){
 		
@@ -50,14 +52,17 @@ public class sub_p4_small extends JPanel{
 	       la3.setBounds(220, 135, 300, 30);
 	       la4.setBounds(220, 175, 300, 30);
 	       bu5.setBounds(220, 215, 100, 30);
-
+	       title=new JLabel("GOOD TASTE");
+	       title.setForeground(Color.ORANGE);
+	       title.setBounds(765, 10, 400, 200);
+	       title.setFont(new Font("Rockwell Extra Bold",Font.BOLD,50));
     	add(la);
     	add(la1);
     	add(la2);
     	add(la3);
     	add(la4);
     	add(bu5);
-    	
+    	add(title);
 	}
 	public void sub_print(CategoryVO vo)
 	{

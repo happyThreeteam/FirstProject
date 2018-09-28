@@ -35,7 +35,7 @@ import com.sist.list.FoodHouseVO;
 
 import java.util.*;
 
-public class ClientMainForm extends JFrame implements ActionListener, MouseListener{
+public class ClientMainForm extends JFrame implements ActionListener, MouseListener, Runnable{
       CardLayout card=new CardLayout();
       //ClientMainForm cmf=new ClientMainForm();
       Login login=new Login(); 
@@ -43,6 +43,7 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
       SearchBarForm sbf=new SearchBarForm();
       sub1Frame sub=new sub1Frame();
       sub2Frame sub2=new sub2Frame();
+      FindFoodForm fff=new FindFoodForm();
       DetailForm df=new DetailForm();
       Chat chat=new Chat();
       
@@ -70,7 +71,7 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
                sub2.b.addActionListener(this);
                mp.b1.addActionListener(this);
                sub2.back.addActionListener(this);
-               sub.d.addActionListener(this);
+              
                df.back.addActionListener(this);
                sbf.chat.addActionListener(this);
                chat.tf.addActionListener(this);
@@ -101,6 +102,10 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
                df.mpb.addActionListener(this);
                sub.mpb.addActionListener(this);
                sub2.mpb.addActionListener(this);
+               sbf.tf.addActionListener(this);
+               sbf.b.addActionListener(this);
+               fff.table.addMouseListener(this);
+               fff.back.addActionListener(this);
                for(int i=0; i<10; i++) {
             	   sub.p4.sps[i].bu5.addMouseListener(this);
                }
@@ -114,6 +119,8 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
 		         add("SUB2", sub2);
 		         add("DF", df);  
 		         add("CHAT",chat);
+		         
+		         add("FINDFOOD", fff);
 		        
 		         setSize(1920, 1080);
           
@@ -131,7 +138,7 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
             }catch(Exception ex) {}
               	ClientMainForm m=new ClientMainForm();
       }
-      public void connection(String id,String name)
+      public void connection(String id)
       {
          try
          {
@@ -140,13 +147,18 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
             in=new BufferedReader(
                   new InputStreamReader(s.getInputStream()));
             out=s.getOutputStream();
-            out.write((Function.LOGIN+"|"+id+"|"+name+"\n").getBytes());
+            out.write((Function.LOGIN+"|"+id+"\n").getBytes());
          }catch(Exception ex){}
+         new Thread(this).start();
       }
       
       @Override
       public void actionPerformed(ActionEvent e) {
          // TODO Auto-generated method stub
+    	  if(e.getSource()==fff.back)
+    	  {
+    		  card.show(getContentPane(), "SBF");
+    	  }
          if(e.getSource()==login.b1)  // 로그인하면 지도있는 페이지로 넘어감
          {
         	 if(login.tf.getText().isEmpty())
@@ -181,6 +193,11 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
             {
                mp.sex_answer.setText(login.woman.getText());
             }
+            
+            try
+            {
+               connection( mp.id_answer.getText());
+            }catch(Exception ex) {}
          }
          
          if(e.getSource()==mp.ch)
@@ -252,15 +269,19 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
          {
             card.show(getContentPane(), "SBF");
          }
-         if(e.getSource()==chat.tf)   // 채팅창
+         if(e.getSource()==chat.tf) //채팅
          {
-            String s=chat.tf.getText();
-            chat.ta.append(s+"\n");
+            String msg=chat.tf.getText();
+            System.out.println(msg);
+            if(msg.length()<1)
+               return;
+            try
+            {
+               out.write((Function.WAITCHAT+"|"+msg+"\n").getBytes());
+               
+            }catch(Exception ex) {System.out.println(ex.getMessage());}
             chat.tf.setText("");
          }
-         
-         
-         
          
          if(e.getSource()==sub.button1)
 			{
@@ -282,6 +303,38 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
 						
 				}
 			}
+			// 검색
+	         if(e.getSource()==sbf.tf||e.getSource()==sbf.b)
+	        {
+	          String title=sbf.tf.getText();
+	          if(title.length()<1)
+	          {
+	             JOptionPane.showMessageDialog(this, "검색어를 입력하세요");
+	             sbf.tf.requestFocus();
+	             return;
+	          }
+	          for(int i=fff.model.getRowCount()-1;i>=0;i--)
+	         {
+	            fff.model.removeRow(i);
+	         }
+	          ArrayList<CategoryVO> list=FoodData1.FoodFindData(title);
+	          for(CategoryVO vo:list)
+	          {
+	             //System.out.println(vo.getTitle());
+	             try
+	             {
+	               URL url=new URL(vo.getPoster());
+	               Image img=getImageSizeChange(new ImageIcon(url), 30, 30);
+	               Object[] obj={new ImageIcon(img),vo.getTitle(),vo.getAddr()};
+	               
+	               fff.model.addRow(obj);
+	             }catch(Exception ex){
+	              System.out.println(ex.getMessage());
+	             }
+	          }
+	          card.show(getContentPane() ,"FINDFOOD");
+	          
+	        }
       }
       @Override
       public void mouseClicked(MouseEvent e) {
@@ -469,6 +522,27 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
         		 
              }
          }
+         // 검색 -> 세부사항
+         if(e.getSource()==fff.table)
+         {
+            if(e.getClickCount()==2)
+            {
+               int row=fff.table.getSelectedRow();
+               String title=fff.model.getValueAt(row, 1).toString();
+               ArrayList<FoodHouseVO> list=FoodDetail1.detail;
+               for(int i=0;i<list.size();i++)
+               {
+                  FoodHouseVO vo=list.get(i);
+                  if(vo.getTitle().equals(title))
+                  {
+                     FoodHouseVO vo1=FoodDetail1.FoodDetail(title);
+                     df.p2.sub_print(vo1);
+                     card.show(getContentPane(), "DF");
+                     break;
+                  }
+               }
+            }
+         }
       }
       @Override
       public void mousePressed(MouseEvent e) {
@@ -496,6 +570,19 @@ public class ClientMainForm extends JFrame implements ActionListener, MouseListe
 	    	Image change=img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 	    	return change;
 	    }
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try
+	      {
+	         // 100|id|name
+	         while(true)
+	         {
+	            String msg=in.readLine();
+	            chat.ta.append(msg+"\n");
+	         }
+	      }catch(Exception ex) {}
+	}
 }
 
 

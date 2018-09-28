@@ -27,9 +27,8 @@ public class DetailForm extends JPanel{
      public DetailForm(){
 
        //p3.setBackground(Color.PINK);
-       p4.setBackground(Color.lightGray);
+       //p4.setBackground(Color.lightGray);
        
-       title=new JLabel("Good Taste");
        mpb = new JButton("마이페이지");
        b=new JButton("검색");
        back=new JButton("이전");       
@@ -37,8 +36,6 @@ public class DetailForm extends JPanel{
        next=new JLabel();
        setLayout(null);
       
-       title.setForeground(Color.orange);
-       
        
        p1.setBounds(0, 0, 1920, 310);
        p2.setBounds(0, 315, 1400, 650);
@@ -51,9 +48,11 @@ public class DetailForm extends JPanel{
       b.setBounds(1345,242,50,50);
       back.setBounds(1400, 242, 50, 50);
       back.setOpaque(true);
-      title.setForeground(Color.ORANGE);
-      title.setBounds(765, 10, 350, 200);
-      title.setFont(new Font("Rockwell Extra Bold",Font.BOLD,40));
+      
+      title=new JLabel("GOOD TASTE");
+		title.setForeground(Color.ORANGE);
+	      title.setBounds(765, 10, 400, 200);
+	      title.setFont(new Font("Rockwell Extra Bold",Font.BOLD,50));
       
       mpb.setOpaque(true);
       

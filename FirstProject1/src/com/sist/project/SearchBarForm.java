@@ -5,13 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class SearchBarForm extends JPanel {
    CardLayout card=new CardLayout();
-   JPanel p1=new JPanel();
+   //JPanel p1=new JPanel();
    //JPanel p2=new JPanel();
    JPanel p3=new JPanel();
    JPanel p4=new JPanel();
    JPanel p5=new JPanel();
    JPanel p6=new JPanel(); // 강원도 세부사항
    JPanel p7=new JPanel(); // 서울시 세부사항
+   
    
    JButton b;
    public JButton mpb;
@@ -28,13 +29,7 @@ public class SearchBarForm extends JPanel {
    JLabel 전주시, 익산시, 남원시;
    
    public SearchBarForm() {
-      p1.setBackground(Color.blue); 
-      //p2.setBackground(Color.white);
-      /*p3.setBackground(Color.RED);
-      p4.setBackground(Color.orange);*/
-      p5.setBackground(Color.green);
-      //p6.setBackground(Color.GRAY);
-      
+      //p5.setBackground(Color.green);
         // 로고 
          title=new JLabel("GOOD TASTE");
          // 검색창 
@@ -89,9 +84,10 @@ public class SearchBarForm extends JPanel {
 
       setLayout(null);
       
+     
       //map=Toolkit.getDefaultToolkit().getImage("C:\\javaDev\\map.png");
-      la=new JLabel(new ImageIcon("C:\\javaDev\\map.png"));
-      p1.setBounds(0,0,1920,310);
+      la=new JLabel(new ImageIcon("Image\\map.png"));
+      //p1.setBounds(0,0,1920,310);
       la.setBounds(150,310,1620,640);
       p5.setBounds(0,950,1920,250);
       
@@ -105,8 +101,8 @@ public class SearchBarForm extends JPanel {
       chat.setBounds(1780,10,100,40);
       
       title.setForeground(Color.ORANGE);
-      title.setBounds(765, 10, 350, 200);
-      title.setFont(new Font("Rockwell Extra Bold",Font.BOLD,40));
+      title.setBounds(765, 10, 400, 200);
+      title.setFont(new Font("Rockwell Extra Bold",Font.BOLD,50));
       
       강원도.setBounds(1025, 55, 70, 70);
       강원도.setFont(new Font("맑은고딕",Font.BOLD,20));
@@ -202,20 +198,17 @@ public class SearchBarForm extends JPanel {
       남원시.setBounds(200,650,70,70);
       남원시.setFont(new Font("맑은고딕",Font.BOLD,20));
 
-      
       add(chat);
       add(title);
       add(tf);
       add(b);
       add(mpb);
-      add(p1);
       add(p3);
       add(p4);
       add(p5);
       add(la);
       add(p7);
       add(p6);
-      
       p6.add(속초시);
       p6.add(강릉시); 
       p6.add(춘천시);
@@ -283,6 +276,8 @@ public class SearchBarForm extends JPanel {
       
       add(p6);
       add(p7);
+      
+      
       p7.setVisible(false);
       p6.setVisible(false);
       속초시.setVisible(false);

@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.net.URL;
 
 public class Mypage extends JPanel {
-	JPanel p1=new JPanel();
+	//JPanel p1=new JPanel();
 	JLabel id = new JLabel("æ∆¿Ãµ ");
 	JLabel id_answer=new JLabel("");
 	JLabel pwd=new JLabel("∫Òπ–π¯»£ ");
@@ -24,7 +24,7 @@ public class Mypage extends JPanel {
 	
 	JLabel la=new JLabel(); //¡Ò∞‹√£±‚ title
 	JLabel la2=new JLabel(); //¡Ò∞‹√£±‚ poster
-	
+	JLabel title;
 	JButton ch=new JButton("∫Ø∞Ê");
 	JButton b1=new JButton("»Æ¿Œ");
 	
@@ -33,7 +33,7 @@ public class Mypage extends JPanel {
 	 
 	Mypage() 
 	{
-		p1.setBackground(Color.ORANGE);
+		//p1.setBackground(Color.ORANGE);
 		
 		
 		id.setFont(new Font("∏º¿∫ ∞ÌµÒ",Font.BOLD,20));
@@ -51,7 +51,7 @@ public class Mypage extends JPanel {
 		ch.setFont(new Font("∏º¿∫ ∞ÌµÒ",Font.BOLD,10));
 		
 		
-		p1.setBounds(0, 0, 1920, 250);
+		//p1.setBounds(0, 0, 1920, 250);
 		p2.setBounds(400, 490, 1200, 365);
 		id.setBounds(400, 280, 80, 100);
 		id_answer.setBounds(580,280,80,100);
@@ -68,9 +68,12 @@ public class Mypage extends JPanel {
 		/*la.setBounds(200, 490, 100, 50);
 		la2.setBounds(200, 580, 400, 350);*/
 		la.setFont(new Font("∏º¿∫ ∞ÌµÒ",Font.PLAIN,20));
+		title=new JLabel("GOOD TASTE");
+		title.setForeground(Color.ORANGE);
+	    title.setBounds(765, 10, 400, 200);
+	    title.setFont(new Font("Rockwell Extra Bold",Font.BOLD,50));
 		
-		
-		add(p1);
+		//add(p1);
 		add(p2);
 		add(id);
 		add(pwd);
@@ -83,6 +86,7 @@ public class Mypage extends JPanel {
 		add(ch);
 		p2.add(la);
 		p2.add(la2);
+		add(title);
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

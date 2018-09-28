@@ -15,7 +15,7 @@ import com.sist.list.FoodData1;
 public class sub1Frame extends JPanel{
 	
 	 ArrayList<CategoryVO> list=new ArrayList<CategoryVO>();
-	
+	JLabel title;
    JPanel p1 = new JPanel();
    JComboBox p2 ;
    JComboBox p3 ;
@@ -48,10 +48,13 @@ public class sub1Frame extends JPanel{
       
       tf = new JTextField();   
        b = new JButton("검색");
-       d = new JButton("검색");
+       //d = new JButton("검색");
        e1 = new JButton("이전");
        mpb = new JButton("마이페이지");
-
+       title=new JLabel("GOOD TASTE");
+       title.setForeground(Color.ORANGE);
+       title.setBounds(765, 10, 400, 200);
+       title.setFont(new Font("Rockwell Extra Bold",Font.BOLD,50));
 	     
       setLayout(null);
       
@@ -60,7 +63,7 @@ public class sub1Frame extends JPanel{
       tf.setBounds(540,250,800,35);
       b.setBounds(1345,242,50,50);
       
-      d.setBounds(1065, 315, 50 ,50);
+      //d.setBounds(1065, 315, 50 ,50);
       p4.setBounds(0, 350, 1920, 620);
       
       e1.setBounds(1405, 242, 50, 50);
@@ -74,13 +77,13 @@ public class sub1Frame extends JPanel{
       button2.setOpaque(true);
       
       b.setOpaque(true);  
-      d.setOpaque(true);
+      
       e1.setOpaque(true);
       mpb.setOpaque(true);
       add(tf);
       add(b);
       
-      add(d);
+      //add(d);
       add(e1);
       add(pp);
       add(p1);
@@ -88,6 +91,7 @@ public class sub1Frame extends JPanel{
       add(button1);
       add(button2);
       add(mpb);
+      add(title);
    }
 
   

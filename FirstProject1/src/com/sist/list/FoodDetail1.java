@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FoodDetail1 {
-	 private static ArrayList<FoodHouseVO> detail=new ArrayList<FoodHouseVO>();
+	 public static ArrayList<FoodHouseVO> detail=new ArrayList<FoodHouseVO>();
 	static
 	  {
 	      try
